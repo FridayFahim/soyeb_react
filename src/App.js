@@ -62,7 +62,8 @@ class App extends Component{
           userId:"",
           title:"",
           body:""
-      }
+      },
+      rmList:[]
      }
    }
     postInput(e){
@@ -73,17 +74,46 @@ class App extends Component{
     addPost(e){
       e.preventDefault()
      this.setState({
-       posts:[...this.state.posts,{...this.state.data,id:this.state.posts.length+1}]
+       posts:[...this.state.posts,{...this.state.data,id:this.state.posts.length+234}]
      })
 
     }
+    removePost(value){
+      this.setState({
+        posts:this.state.posts.filter(item => item.id !== value)
+      })
+    }
+    removeSelected(){
+      this.state.rmList.forEach(value => {
+        this.setState({
+          posts:this.state.posts.filter(item => item.id !== value)
+        })
+      })
+     
+    }
+
+    removeList(value,e){
+      if(e.target.checked){
+        this.setState({
+          rmList:[...this.state.rmList,value]
+        })
+      }
+      if(e.target.checked === false){
+        this.setState({
+          rmList:this.state.rmList.filter(item => item !== value)
+        })
+      }
+      
+    }
   render(){
-    
     return (
       <div className="App">
           <Header/>
           <Posts 
           posts={this.state.posts}
+          removePost={this.removePost.bind(this)}
+          removeList={this.removeList.bind(this)}
+          removeSelected={this.removeSelected.bind(this)}
           />
           <AddPosts 
           postInput={this.postInput.bind(this)} 

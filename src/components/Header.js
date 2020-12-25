@@ -19,7 +19,7 @@ export default class Header extends Component {
                 <div style={this.state.flexcenter} className="row">
                     <div className="home-content">
                         <h1>welcome to my blog</h1>
-                        <button>check my blogs</button>
+                        <button className="home-btn">check my blogs</button>
                     </div>
                 </div>
             </div>

@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import PostItems from './PostItems'
 export default class Posts extends Component {
-    constructor(props){
-        super(props)
-    }
+
     render() {
-       const {posts} = this.props;
+       const {posts,removePost,removeList,removeSelected} = this.props;
         return (
             <div className="posts">
                 <h1>Posts</h1>
@@ -17,7 +15,14 @@ export default class Posts extends Component {
                             user={data.userId}
                             title={data.title}
                             body={data.body}
+                            removePost={removePost.bind(this)}
+                            removeList={removeList.bind(this)}
                         />)} 
+
+                        <button
+                         className="post-btn"
+                         onClick={removeSelected.bind(this)}
+                         >remove selected</button>
                     </div>
                 </div>
             </div>

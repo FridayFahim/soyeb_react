@@ -20,7 +20,7 @@ body,
 .center-align-v{
   align-items: center;
 }
-.home-content button{
+.home-btn{
   display: inline-block;
   margin-top: 25px;
   background-color: transparent;
@@ -30,7 +30,7 @@ body,
   text-transform: uppercase;
   cursor: pointer;
 }
-.posts button{
+.post-btn{
   display: inline-block;
   background-color: red;
   color: white;
@@ -43,7 +43,7 @@ body,
 .posts{
   padding: 100px 0;
 }
-.posts .container{
+.container{
   width: 80%;
 }
 .posts .container .row div{
@@ -53,22 +53,37 @@ body,
   padding: 15px;
 }
 .posts .container .row div:nth-child(1){
-  flex: 1 0 100px;
+  flex: 1 0 10px;
   border-left:1px solid black;
 }
 .posts .container .row div:nth-child(2){
-  flex: 1 0 100px;
+  flex: 2 0 100px;
 }
 .posts .container .row div:nth-child(3){
   flex: 2 0 100px;
 }
 .posts .container .row div:nth-child(4){
-  flex: 4 0 100px;
+  flex: 2 0 100px;
 }
 .posts .container .row div:nth-child(5){
+  flex: 4 0 100px;
+}
+.posts .container .row div:nth-child(6){
   flex: 1 0 100px;
 }
 .posts h1{
   text-align: center;
   padding: 25px 0;
+}
+/* addpost */
+.form{
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-bottom: 1px solid black;
+  margin: 10px 0;
+  font-size: 24px;
+}
+textarea.form{
+  min-height: 300px;
 }
