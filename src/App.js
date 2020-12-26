@@ -1,16 +1,13 @@
-import {Component} from 'react'
+import React,{useState} from 'react'
 import './App.css';
 
 import Header from "./components/Header";
 import Posts from "./components/Posts";
 import AddPosts from "./components/AddPosts";
 
-
-class App extends Component{
-   constructor(){
-     super()
-     this.state = {
-       posts:[ {
+const App = () => {
+  
+       const [posts,setPosts] = useState([{
         "userId": 1,
         "id": 1,
         selected:false,
@@ -65,77 +62,67 @@ class App extends Component{
         selected:false,
         "title": "dolorem dolore est ipsam",
         "body": "dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae"
-      }],
-      data:{
-          userId:"",
-          title:"",
-          body:""
-      }
-     }
-   }
-    postInput(e){
-        this.setState({
-            data:{...this.state.data,[e.target.name]:e.target.value}
-        })
+      }])
+
+      const [data,setData] = useState({
+        userId:"",
+        title:"",
+        body:""
+    })
+
+    function postInput(e){
+        setData({...data,[e.target.name]:e.target.value})
     }
-    addPost(e){
+    function addPost(e){
       e.preventDefault()
-     this.setState({
-       posts:[...this.state.posts,{...this.state.data,id:this.state.posts.length+234}]
-     })
+      setPosts([...posts,{...data,id:posts.length+234}])
 
     }
-    removePost(value){
-      this.setState({
-        posts:this.state.posts.filter(item => item.id !== value)
-      })
+    function removePost(value){
+      setPosts(posts.filter(item => item.id !== value))
     }
-    removeSelected(){
-      this.setState({
-        posts:this.state.posts.filter(post => post.selected === false)
-      })
+    function removeSelected(){
+      setPosts(posts.filter(post => post.selected === false))
     }
 
-    removeList(value,e){
+    function removeList(value,e){
       if(e.target.checked){
-        this.setState({
-          posts:this.state.posts.map(item => {
+        setPosts(posts.map(item => {
             if(item.id === value){
               item.selected = true
             }
             return item
           })
-        })
+          )
       }
       if(e.target.checked === false){
-        this.setState({
-          posts:this.state.posts.map(item => {
+        setPosts(posts.map(item => {
             if(item.id === value){
               item.selected = false
             }
             return item
           })
-        })
+        )
       }
       
     }
-  render(){
+
     return (
       <div className="App">
           <Header/>
           <Posts 
-          posts={this.state.posts}
-          removePost={this.removePost.bind(this)}
-          removeList={this.removeList.bind(this)}
-          removeSelected={this.removeSelected.bind(this)}
+          posts={posts}
+          removePost={removePost}
+          removeList={removeList}
+          removeSelected={removeSelected}
           />
           <AddPosts 
-          postInput={this.postInput.bind(this)} 
-          addPost={this.addPost.bind(this)}
+          postInput={postInput} 
+          addPost={addPost}
           />
       </div>
     );
-  }
+
 }
 
 export default App;
