@@ -2,13 +2,18 @@ import React, { Component } from 'react'
 
 export default class PostItems extends Component {
     render() {
-        const {id,user,title,body,removePost,removeList} = this.props
+        const checkedStyle = {
+            textDecoration:"line-through",
+            color:"red"
+        }
+        const {id,user,title,body,removePost,removeList,selectedPost} = this.props
         return (
-                <div className="row">
+                <div className="row" style={selectedPost?checkedStyle:null}>
                     <div className="id">
                         <input 
                         type="checkbox" 
-                        onClick={removeList.bind(this,id)}
+                        onChange={removeList.bind(this,id)}
+                        checked={selectedPost}
                         />
                     </div>
                     <div className="id">

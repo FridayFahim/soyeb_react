@@ -15,6 +15,7 @@ export default class Posts extends Component {
                             user={data.userId}
                             title={data.title}
                             body={data.body}
+                            selectedPost={data.selected}
                             removePost={removePost.bind(this)}
                             removeList={removeList.bind(this)}
                         />)} 
